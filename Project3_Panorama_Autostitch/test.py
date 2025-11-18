@@ -20,7 +20,9 @@ class TestWarp(unittest.TestCase):
 
         resBl = np.load('testMat/warpBlank.npy')
 
-        self.img_bl = warp.warpSpherical(blank,parameters[0],parameters[1],parameters[2])
+        # 빈칸
+        # Spherical Warping을 위해 warpSpherical 함수에 올바른 입력을 전달하시오.
+        self.img_bl = warp.warpSpherical(__________, __________, __________, __________)
         self.org_bl = resBl
 
 
@@ -67,14 +69,22 @@ class TestAlignment(unittest.TestCase):
         '''Tests A matrix from TODO 2'''
         # Place holder to get A from computeHomography
         A_student = np.zeros((8, 9))
-        alignment.computeHomography(self.f1, self.f2, self.matches, A_student)
+
+        # 빈칸
+        # computeHomography 함수에 feature 집합과 match, A 행렬을 전달하시오.
+        alignment.computeHomography(__________, __________, __________, __________)
+
         A_soln = np.load('testMat/identityA.npy')
         self.assertTrue(np.allclose(A_soln, A_student, rtol=1e-05, atol=1e-05),
             'Error in Filling in A Matrix'
         )
     def test_computehomography3(self):
         '''Tests A matrix from TODO 3'''
-        H_student = alignment.computeHomography(self.f1, self.f2, self.matches)
+
+        # 빈칸
+        # Homography 행렬 H를 반환하도록 computeHomography를 호출하시오.
+        H_student = alignment.computeHomography(__________, __________, __________)
+
         H_student = H_student.astype(float)
         H_student = H_student/H_student[2,2]
         self.assertTrue(np.allclose(np.eye(3), H_student, rtol=1e-05, atol=1e-05),
@@ -82,24 +92,39 @@ class TestAlignment(unittest.TestCase):
         )
     def test_alignPair(self):
         '''Tests TODO 4'''
-        M = alignment.alignPair(self.f1,self.f2,self.matches, alignment.eHomography, 1, 1)
+
+        # 빈칸
+        # alignPair 함수에 feature, match, motion model 등을 올바르게 전달하시오.
+        M = alignment.alignPair(__________, __________, __________, __________, __________, __________)
 
     def test_getInliers(self):
         '''Tests TODO 5'''
-        inliers = alignment.getInliers(self.f1+[self.outlier_f1],self.f2+[self.outlier_f2],self.matches_with_outlier, np.eye(3),1)
+
+        # 빈칸
+        # RANSAC threshold=1 일 때 inlier를 구하시오.
+        inliers = alignment.getInliers(__________, __________, __________, __________, __________)
         self.assertTrue(len(inliers)==4,"Error in getting inliers")
-        inliers = alignment.getInliers(self.f1+[self.outlier_f1],self.f2+[self.outlier_f2],self.matches_with_outlier, np.eye(3),2)
+
+        # 빈칸
+        # RANSAC threshold=2 일 때 inlier를 구하시오.
+        inliers = alignment.getInliers(__________, __________, __________, __________, __________)
         self.assertTrue(len(inliers)==5,"Error in getting inliers")
 
     def test_leastSquaresFit(self):
         '''Tests TODO 6,7'''
-        M = alignment.leastSquaresFit(self.f1+[self.outlier_f1],self.f2+[self.outlier_f2],self.matches_with_outlier,1,[0,1,2,3])
+
+        # 빈칸
+        # 첫 번째 inlier 집합에 대해 leastSquaresFit을 수행하시오.
+        M = alignment.leastSquaresFit(__________, __________, __________, __________, __________)
         M = M.astype(float)
         M = M/M[2,2]
         self.assertTrue(np.allclose(np.eye(3), M, rtol=1e-05, atol=1e-05),
             'Error in least square fitting'
         )
-        M = alignment.leastSquaresFit(self.f1+[self.outlier_f1],self.f2+[self.outlier_f2],self.matches_with_outlier,1,[0,1,2,4])
+
+        # 빈칸
+        # 두 번째 inlier 집합에 대해 leastSquaresFit을 수행하시오.
+        M = alignment.leastSquaresFit(__________, __________, __________, __________, __________)
         M = M.astype(float)
         M = M/M[2,2]
         transform = np.array([[0.9,0,0],[0,0.9,0],[-0.1,-0.1,1]])
@@ -123,7 +148,11 @@ class TestBlend(unittest.TestCase):
 
     def test_imageBoundingBox(self):
         '''Tests TODO 8'''
-        minX,minY,maxX,maxY = blend.imageBoundingBox(self.testimage,self.rot_trans_transform)
+
+        # 빈칸
+        # imageBoundingBox 호출 시 이미지와 Homography 행렬을 전달하시오.
+        minX,minY,maxX,maxY = blend.imageBoundingBox(__________, __________)
+
         sol_minX,sol_minY,sol_maxX,sol_maxY = \
             int(5-9*np.sin(np.pi/4)),int(-5),int(5+9*np.sin(np.pi/4)),int(18*np.sin(np.pi/4)-5)
         self.assertAlmostEqual(minX, sol_minX,
@@ -151,7 +180,11 @@ class TestBlend(unittest.TestCase):
         '''Tests TODO 9'''
         ipv = [blend.ImageInfo("test1",self.testimage,self.rot_trans_transform1),
             blend.ImageInfo("test2",self.testimage,self.rot_trans_transform2)]
-        accWidth, accHeight, channels, width, translation = blend.getAccSize(ipv)
+
+        # 빈칸
+        # getAccSize 호출 시 이미지 정보 리스트를 전달하시오.
+        accWidth, accHeight, channels, width, translation = blend.getAccSize(__________)
+
         self.assertAlmostEqual(accWidth, 20,
             msg='Expected acc width to be {} +/-1 but got {}.'.format(20,
             accWidth),
