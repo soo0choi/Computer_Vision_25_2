@@ -49,7 +49,7 @@
 ## 🚀 **실행 및 테스트 방법**
 
 1. **`test.py` 파일의 TODO 1–9 구현**
-    - `alignment.py`, `warp.py`, `blend.py`의 관련 클래스와 함수를 참고해 `test.py`의 **빈칸(__________)**만 채우면 됩니다.
+    - `alignment.py`, `warp.py`, `blend.py`의 관련 클래스와 함수를 참고해 `test.py`의 **빈칸(_______)** 만 채우면 됩니다.
 2. **GUI 프로그램 실행**
     - `test.py` 파일 구현 후 `python gui.py` 를 실행하면 **GUI 프로그램이 실행**됩니다.
     <img width="1468" height="841" alt="image-6" src="https://github.com/user-attachments/assets/447c5788-66a8-4f0f-9cd4-ec71b0b68fc5" />
