@@ -1,4 +1,4 @@
-<img width="1468" height="841" alt="image-6" src="https://github.com/user-attachments/assets/06be9f4c-528b-4eb3-8917-57415c2b8e80" /># **📚 CV_class_2025_2_Assignment_3**
+# **📚 CV_class_2025_2_Assignment_3**
 
 2025-2 Computer Visoin Assigmnet 3, 파노라마 이미지를 생성하는 과제입니다. 아래 과정을 따라 과제를 진행해주세요:D
 
