@@ -1,4 +1,4 @@
-# **📚 CV_class_2025_2_Assignment_3**
+<img width="1468" height="841" alt="image-6" src="https://github.com/user-attachments/assets/06be9f4c-528b-4eb3-8917-57415c2b8e80" /># **📚 CV_class_2025_2_Assignment_3**
 
 2025-2 Computer Visoin Assigmnet 3, 파노라마 이미지를 생성하는 과제입니다. 아래 과정을 따라 과제를 진행해주세요:D
 
@@ -52,14 +52,12 @@
     - `alignment.py`, `warp.py`, `blend.py`의 관련 클래스와 함수를 참고해 `test.py`의 **빈칸(__________)**만 채우면 됩니다.
 2. **GUI 프로그램 실행**
     - `test.py` 파일 구현 후 `python gui.py` 를 실행하면 **GUI 프로그램이 실행**됩니다.
-    
-    ![image.png](attachment:93ade2a7-de5b-4da0-a49f-25a6dda54552:image.png)
+    <img width="1468" height="841" alt="image-6" src="https://github.com/user-attachments/assets/447c5788-66a8-4f0f-9cd4-ec71b0b68fc5" />
     
 3. **이미지 불러오기**
     - GUI 프로그램의 **Panorama** 탭의 ‘Load Directory’를 통해 파노라마 소스 이미지들을 불러옵니다.
     - 이때, 이미지 파일 경로는 `Project3_Panorama_Autostitch/resources/yosemite/panorama` 로 설정합니다.
-    
-    ![image.png](attachment:253f6342-a44f-42bc-98af-662e4220633a:image.png)
+    <img width="1467" height="788" alt="image-4" src="https://github.com/user-attachments/assets/d9ae3cf0-ccc7-4d2d-b7a0-dbe34ea0fb82" />
     
 4. **파노라마 실험(제공 데이터셋)**
     - GUI에서 파라미터 값을 조정해 파노라마 이미지를 완성하고 화면을 캡처합니다.
@@ -70,10 +68,8 @@
         
         - 파일명 형식: `학번_test_1.jpg`
         - 예: `20211234_test_1.jpg`
+    <img width="1470" height="841" alt="image-5" src="https://github.com/user-attachments/assets/4154a9b9-07ab-4c20-a110-4f586fc694c8" />
     
-    ![image.png](attachment:f2b8e599-73ba-4489-9108-dbd587693e80:image.png)
-    
-
 ---
 
 **5. 파노라마 실험(개인 데이터셋 사용)**
