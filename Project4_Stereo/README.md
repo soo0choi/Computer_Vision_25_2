@@ -66,8 +66,11 @@
         - ex) `python photometric_stereo.py cat`
     - 결과 파일은 자동으로 `output/` 폴더에 저장됩니다.
         - `{category}_albedo.png`
+          
           <img width="299" height="382" alt="image" src="https://github.com/user-attachments/assets/14ca44c6-6346-4211-b0a6-8b14719f6942" />
+          
         - `{category}_normals.png`
+          
           <img width="350" height="449" alt="image-2" src="https://github.com/user-attachments/assets/38781f5d-1b67-4662-835f-17aad19bbea2" />
         - `{category}_normals.npy`
 
@@ -78,10 +81,14 @@
     - 결과는 자동으로 `output/` 폴더에 저장됩니다.
         - `Flowers_depth.npy`
         - `Flowers_ncc.png`
+          
           <img width="535" height="366" alt="image-3" src="https://github.com/user-attachments/assets/b438529f-f47f-4794-83cf-a5eb212d0028" />        
         - `Flowers_ncc.gif`
-            ![Flowers_ncc](https://github.com/user-attachments/assets/c52a6477-6364-496a-bd82-2635807fe42f)        
+          
+            ![Flowers_ncc](https://github.com/user-attachments/assets/c52a6477-6364-496a-bd82-2635807fe42f)
+                
         - `Flowers_projected.gif`
+          
             ![Flowers_projected](https://github.com/user-attachments/assets/fdfa4833-8a02-441b-bccf-451249f50c02)
             
 3. **설명 PDF 작성**
