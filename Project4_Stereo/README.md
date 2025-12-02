@@ -1,6 +1,8 @@
-# **📚 CV_class_2025_2_Assignment_3**
+# **📚 CV_class_2025_2_Assignment_4**
 
-2025-2 Computer Visoin Assigmnet 3, 파노라마 이미지를 생성하는 과제입니다. 아래 과정을 따라 과제를 진행해주세요:D
+이번 과제에서는 **Photometric Stereo(물체의 노말·알베도 추정)** 와**Plane Sweep Stereo(깊이 추정)** 의 핵심 파이프라인을 직접 구현하고 결과를 시각화하는 것을 목표로 합니다.
+
+아래 과정을 따라 과제를 진행해주세요:D
 
 과제 관련 문의가 있다면 아래 조교 메일로 연락해주세요.
 
@@ -8,92 +10,102 @@
 
 ---
 
-## 🧩 **Project 3: Panorama Stitching & Image Alignment**
+## 🧩 **Project 4: Photometric Stereo + Stereo Matching**
 
-이 프로젝트에서는
+이 프로젝트에서는 이번 프로젝트에서는 두 개의 독립적인 모듈을 구현하게 됩니다.
 
-<aside>
+### 1) Photometric Stereo (PSData 사용)
 
-**여러 장의 이미지를 정렬(alignment) → Homography를 이용해 변환(warping) → 부드럽게 합성(blending) → 파노라마 이미지 생성**
+제공된 물체 이미지들(frog, pig, scholar 등 여러 카테고리) 중 하나를 선택해 물체 표면의 **알베도(albedo)**와 **법선(normals)** 을 추정합니다.
 
-</aside>
+### 주요 목표
 
-하는 과정을 구현합니다.
+- 여러 조명 아래 촬영된 다수 이미지 로딩
+- Lambertian Reflectance 기반 법선 벡터 계산
+- Albedo 추정
+- 노말 벡터 시각화
+- 알베도 / 노말 결과 저장(`output/파일명.png`, `.npy`)
 
-### **주요 목표**
+구현해야 할 함수들은 **student.py에만 TODO로 제공**됩니다.
 
-- Spherical Warping (구면 투영 변환)
-- Feature Alignment (Homography 기반 정렬)
-- RANSAC 기반 Inlier 추출
-- Image Bounding Box 계산 및 Accumulator 크기 계산
-- 단일 파노라마를 위한 이미지 영역 합성
+### 2) Plane Sweep Stereo (Left–Right 뷰로 깊이 추정)
 
-이 프로젝트는 전체 파이프라인 중 핵심 수학적 단계를 직접 구현해 결과 이미지를 시각화하는 것을 목표로 합니다.
+제공된 stereo 데이터셋(`input/left`, `input/right`)을 사용하여 여러 disparity 가설을 Sweep하여 깊이 맵을 추정합니다.
+
+### 주요 목표
+
+- Normalized Cross-Correlation(NCC) 계산
+- Plane Sweep을 통해 최적 disparity 선택
+- 3D 점들을 right view로 재투영해 align 시각화
+- Depth 결과 저장(`output/파일명.png`, `.npy`)
 
 ---
 
 ## 🪜 **단계별 진행**
 
-아래 단계들을 test.py의 TODO를 따라 진행해주시면 됩니다.
+아래 단계들은 **`student.py`의 TODO**를 따라 Photometric Stereo 및 Plane Sweep Stereo의 핵심 기능을 구현하는 과정입니다.
 
-1. **Spherical Warping (TODO 1):** 이미지를 구면으로 펼쳐 파노라마 형태에 맞게 변환
-2. **Homography 계산 (TODO 2–3):** 두 이미지의 대응점을 이용해 이미지 사이의 변환 관계(H) 추정
-3. **이미지 정렬 (TODO 4):** 계산한 Homography를 기반으로 두 이미지를 같은 좌표계에 맞게 정렬
-4. **Inlier 추출 (TODO 5):** RANSAC 방식으로 정확한 대응점(inlier)만 추출
-5. **Homography 재추정 (TODO 6–7):** 추출된 inlier들만 사용해 Homography를 더 정확하게 계산
-6. **Bounding Box 계산 (TODO 8):** 변환된 이미지가 어느 좌표 범위에 위치하는지 최소·최대 x,y 범위 계산
-7. **Panorama 크기 계산 (TODO 9):** 모든 이미지가 들어갈 파노라마의 폭·높이를 계산하고, 필요한 translation 값 결정
+1. **Photometric Stereo 구현 (TODO 1–2)**
+    - 알베도(albedo) 계산
+    - 노말(normals) 계산
+2. **Stereo NCC 계산 (TODO 3)**
+    - 좌·우 이미지 사이의 NCC 기반 매칭 비용 계산
+3. **Plane Sweep (TODO 4)**
+    - 여러 disparity 후보 중 최적의 값을 선택해 깊이맵 생성
+4. **Right-view 투영 (TODO 5)**
+    - 추정된 깊이맵을 이용해 left-view 이미지를 right-view로 재투영하여 검증
 
 ---
 
 ## 🚀 **실행 및 테스트 방법**
 
-1. **`test.py` 파일의 TODO 1–9 구현**
-    - `alignment.py`, `warp.py`, `blend.py`의 관련 클래스와 함수를 참고해 `test.py`의 **빈칸(_______)** 만 채우면 됩니다.
-2. **GUI 프로그램 실행**
-    - `test.py` 파일 구현 후 `python gui.py` 를 실행하면 **GUI 프로그램이 실행**됩니다.
-    <img width="1468" height="841" alt="image-6" src="https://github.com/user-attachments/assets/447c5788-66a8-4f0f-9cd4-ec71b0b68fc5" />
-    
-3. **이미지 불러오기**
-    - GUI 프로그램의 **Panorama** 탭의 ‘Load Directory’를 통해 파노라마 소스 이미지들을 불러옵니다.
-    - 이때, 이미지 파일 경로는 `Project3_Panorama_Autostitch/resources/yosemite/panorama` 로 설정합니다.
-    <img width="1467" height="788" alt="image-4" src="https://github.com/user-attachments/assets/d9ae3cf0-ccc7-4d2d-b7a0-dbe34ea0fb82" />
-    
-4. **파노라마 실험(제공 데이터셋)**
-    - GUI에서 파라미터 값을 조정해 파노라마 이미지를 완성하고 화면을 캡처합니다.
-        - 아래 예시와 같은 결과 화면이 나오면 성공입니다.
-    - `Project3_Panorama_Autostitch/resources` 경로에 **test_result** 폴더를 생성한 뒤,
-        
-        완성된 **GUI 결과 화면 캡처**를 해당 폴더에 저장합니다.
-        
-        - 파일명 형식: `학번_test_1.jpg`
-        - 예: `20211234_test_1.jpg`
-    <img width="1470" height="841" alt="image-5" src="https://github.com/user-attachments/assets/4154a9b9-07ab-4c20-a110-4f586fc694c8" />
-    
----
+1. **Photometric Stereo 실행**
+    - `photometric_stereo.py` 의 빈칸을 채운 후, 터미널에서 아래와 같이 명령어를 입력해 실행합니다.
+        - 원하는 객체(category) 입력: `cat`, `frog`, `pig`, `scholar` 등을 입력해주세요.
+        - 데이터셋은 `/Project4_Stereo/data/PSData` 경로에 위치해있습니다.
+        - ex) `python photometric_stereo.py cat`
+    - 결과 파일은 자동으로 `output/` 폴더에 저장됩니다.
+        - `{category}_albedo.png`
+          <img width="299" height="382" alt="image" src="https://github.com/user-attachments/assets/14ca44c6-6346-4211-b0a6-8b14719f6942" />
+        - `{category}_normals.png`
+          <img width="350" height="449" alt="image-2" src="https://github.com/user-attachments/assets/38781f5d-1b67-4662-835f-17aad19bbea2" />
+        - `{category}_normals.npy`
 
-**5. 파노라마 실험(개인 데이터셋 사용)**
-
-- GUI 프로그램을 활용하여 **본인이 직접 준비한 이미지들로 파노라마를 생성**합니다.
-- 과제에서 제공된 데이터셋은 사용하지 않으며, **직접 촬영한 이미지** 또는 **인터넷에서 구한 파노라마용 이미지 세트**를 활용해 파노라마를 구성합니다.
-  
-**6. 파노라마 실험(개인 데이터셋 사용) 설명 pdf**
-- 각자 만든 파노라마 결과에 대해 **설명 PDF**를 작성해 제출합니다.
-- PDF 분량은 **2페이지 이내**로 하며, 아래 내용을 포함해야 합니다.
-  - 사용한 **데이터셋 설명**
-    - **테스트 과정 및 결과 분석**
-      - 어떤 조건에서 파노라마가 잘 생성되었는지 / 잘 생성되지 않았는지
-        - 그 이유에 대한 본인의 분석
-      - **GUI 프로그램에서 생성한 파노라마 결과 이미지(필수 포함)**
-- 파일명은 **test_result 폴더** 안에 `학번_test_2.pdf` 형식으로 저장합니다.
-    - 예: `20211234_test_2.pdf`
+2. **Stereo Matching 실행 → 레포트 작성**
+    - `/Project4_Stereo/data/Flowers-perfect` 경로에 위치한 데이터셋을 사용합니다.
+    - 터미널에 아래의 명령어를 입력해 `plane_sweep_stereo.py` 파일을 실행합니다.
+        - `python plane_sweep_stereo.py Flowers`
+    - 결과는 자동으로 `output/` 폴더에 저장됩니다.
+        - `Flowers_depth.npy`
+        - `Flowers_ncc.png`
+          <img width="535" height="366" alt="image-3" src="https://github.com/user-attachments/assets/b438529f-f47f-4794-83cf-a5eb212d0028" />        
+        - `Flowers_ncc.gif`
+            ![Flowers_ncc](https://github.com/user-attachments/assets/c52a6477-6364-496a-bd82-2635807fe42f)        
+        - `Flowers_projected.gif`
+            ![Flowers_projected](https://github.com/user-attachments/assets/fdfa4833-8a02-441b-bccf-451249f50c02)
+            
+3. **설명 PDF 작성**
+    - 아래의 내용을 포함해 레포트를 1p 이내로 작성해주세요.
+        - plane sweep이 어떤 원리인지 **자기 말로 요약**해 설명하세요.
+        - NCC가 무엇인지 설명해주세요.
+        - depth 결과를 분석해주세요.
+            - ex) 가까운 영역은 왜 밝고 먼 영역은 어두운지
+    - `output` 폴더에 pdf를 업로드 해주세요.
+    - 제출 파일명
+        - `학번.pdf`
 
 ---
 
-## ⭐️ **과제 제출 총정리**
+## **과제 제출 총정리**
 
-- 본 레포지토리를 자신의 컴퓨터로 **pull**한 뒤, `test.py`의 TODO 함수를 구현합니다.
-- 구현 후, **test_result** 폴더 안에 아래 두 파일을 추가합니다.
-    - 실습한 **제공 데이터셋 파노라마 결과(GUI 화면 캡처:** `학번_test_1.jpg`**)**
-    - **개인 데이터셋 파노라마 설명 PDF(**`학번_test_2.pdf`**)**
+- 본 레포지토리를 자신의 컴퓨터로 **pull**한 뒤, `student.py`의 TODO 함수를 구현합니다.
+- 구현 후, **output** 폴더 안에 아래 파일들을 추가되었는지 확인합니다. 아래 파일들이 필수적으로 포함되어 있어야합니다.
+    - `{category}_albedo.png`
+    - `{category}_normals.png`
+    - `{category}_normals.npy`
+    - `Flowers_depth.npy`
+    - `Flowers_ncc.png`
+    - `Flowers_ncc.gif`
+    - `Flowers_projected.gif`
+    - **개인 설명 PDF(**`학번.pdf`**)**
 - 모든 파일을 추가한 뒤 **push**하면 과제 제출이 완료됩니다.
