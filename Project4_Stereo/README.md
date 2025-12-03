@@ -54,6 +54,8 @@
     - 여러 disparity 후보 중 최적의 값을 선택해 깊이맵 생성
 4. **Right-view 투영 (TODO 5)**
     - 추정된 깊이맵을 이용해 left-view 이미지를 right-view로 재투영하여 검증
+  
+구현된 함수들이 **`photometric_stereo.py`** 에서 어떻게 호출되고 있는지 참고하며 빈칸을 채주세요.
 
 ---
 
