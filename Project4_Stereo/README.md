@@ -16,7 +16,7 @@
 
 ### 1) Photometric Stereo (PSData 사용)
 
-제공된 물체 이미지들(frog, pig, scholar 등 여러 카테고리) 중 하나를 선택해 물체 표면의 **알베도(albedo)**와 **법선(normals)** 을 추정합니다.
+제공된 물체 이미지들(frog, pig, scholar 등 여러 카테고리) 중 하나를 선택해 물체 표면의 **알베도(albedo)** 와 **법선(normals)** 을 추정합니다.
 
 ### 주요 목표
 
